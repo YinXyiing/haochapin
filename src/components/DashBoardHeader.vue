@@ -9,7 +9,9 @@
 <template>
   <div class="dashBoardHeader">
     <div class="dashBoardHeader_main">
-      <div class="dashBoardHeader_title">网上政务服务能力调查评估</div>
+      <div class="dashBoardHeader_title">
+        <slot></slot>
+      </div>
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
     <div class="nav_border" v-if="isShowNav" @mouseleave="navHidden">
