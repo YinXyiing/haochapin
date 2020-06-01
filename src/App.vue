@@ -7,9 +7,16 @@
  * @FilePath: \government-service-assessment\src\App.vue
 -->
 <template>
-  <div id="app">
+  <div id="app" class="backboard">
     <router-view />
   </div>
 </template>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+.backboard {
+  background: url('./assets/dashboard/background.png') no-repeat;
+  width: 100vw;
+  height: 200vh;
+  background-size: 100% 100%;
+}
+</style>

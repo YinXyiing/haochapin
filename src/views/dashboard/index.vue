@@ -24,7 +24,11 @@
               <span>总指数得分</span>
             </div>
             <ul>
-              <li v-for="item in dataList" :key="item.index">{{item.text}}</li>
+              <li v-for="item in dataList" :key="item.index">
+                <p>{{item.id}}</p>
+                <p>{{item.text}}</p>
+                <p>{{item.score}}</p>
+              </li>
             </ul>
           </div>
         </div>
@@ -169,7 +173,7 @@
               class="right_matter_board"
               ref="right_matter_board"
               :class="[(selectIndex==1)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:100%"
+              style="height:200px;width:900px"
             ></div>
             <div
               class="apply_matter_board"
@@ -200,23 +204,24 @@
 <script>
 import vDashBoardHeader from '@/components/DashBoardHeader'
 import echarts from 'echarts'
-import '../../../node_modules/echarts/map/js/province/shanxi'
+// import '../../../node_modules/echarts/map/js/province/shanxi'
+import '../../assets/js/shanxi'
 export default {
   data () {
     return {
       chart: null,
       selectIndex: 0,
       dataList: [
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' },
-        { text: '学习' }
+        { id: '1', text: '学习', score: '100' },
+        { id: '2', text: '学习', score: '100' },
+        { id: '3', text: '学习', score: '100' },
+        { id: '4', text: '学习', score: '100' },
+        { id: '5', text: '学习', score: '100' },
+        { id: '6', text: '学习', score: '100' },
+        { id: '7', text: '学习', score: '100' },
+        { id: '8', text: '学习', score: '100' },
+        { id: '9', text: '学习', score: '100' },
+        { id: '10', text: '学习', score: '100' }
       ],
       myChart: ''
     }
@@ -230,9 +235,9 @@ export default {
     const totaldata = echarts.init(this.$refs.total_matter_board)
     const citydata = echarts.init(this.$refs.right_matter_board)
     var radarOption = {
-      // title: {
-      //   text: '基础雷达图'
-      // },
+      title: {
+        text: ''
+      },
       tooltip: {},
       legend: {
         data: ['2018', '2017', '2016']
@@ -243,9 +248,26 @@ export default {
           textStyle: {
             color: '#fff',
             // backgroundColor: '#999',
-            // borderRadius: 3,
-            padding: [3, 5]
+            borderRadius: 3
+            // padding: [3, 5]
           }
+        },
+        formatter: function (text) {
+          var strlength = text.length
+          if (strlength % 3 !== 0) {
+            text = text.replace(/\S{3}/g, function (match) {
+              console.log(match)
+              return match + '\n'
+            })
+          } else {
+            text = text.replace(/\S{3}/g, function (match) {
+              console.log(match)
+              return match + '\n'
+            })
+            strlength = text.length
+            text = text.substring(0, strlength - 1)
+          }
+          return text
         },
         indicator: [
           { name: '服务方式完备度', max: 6500 },
@@ -299,12 +321,25 @@ export default {
         }
       },
       xAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        },
+
         type: 'category',
         boundaryGap: false,
         data: ['太原', '大同', '朔州', '阳泉', '长治', '忻州', '吕梁', '晋中', '临汾', '运城', '晋城']
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
       },
       series: [
         {
@@ -346,8 +381,23 @@ export default {
           { product: '晋城', 2015: 72.4, 2016: 53.9, 2017: 39.1 }
         ]
       },
-      xAxis: { type: 'category' },
-      yAxis: {},
+      xAxis: {
+        type: 'category',
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
       // Declare several bar series, each will be mapped
       // to a column of dataset.source by default.
       series: [
@@ -359,9 +409,10 @@ export default {
     indicdata.setOption(radarOption)
     totaldata.setOption(polyOption)
     citydata.setOption(dataOption)
+    var that = this
     this.myChart.on('click', function (params) {
-      console.log(params)
-      alert(params.name)
+      var cityname = params.name
+      that.$router.push(`/citydetail/${cityname}`)
     })
   },
   beforeDestroy () {
@@ -380,7 +431,7 @@ export default {
       this.selectIndex = index
     },
     chinaConfigure () {
-      console.log(this.userJson)
+      var that = this
       this.myChart = echarts.init(this.$refs.myEchart)
       window.onresize = this.myChart.resize
       this.myChart.setOption({ // 进行相关配置
@@ -445,6 +496,7 @@ export default {
         {
           name: '选择省份', // 浮动框的标题
           type: 'map',
+          value: '1',
           geoIndex: 0,
           data: [{
             name: '太原',
@@ -461,10 +513,10 @@ export default {
 
 <style lang='scss' scoped>
 .dashboard {
-  background: url("../../assets/dashboard/background.png") no-repeat;
-  width: 100vw;
-  height: 200vh;
-  background-size: 100% 100%;
+  // background: url("../../assets/dashboard/background.png") no-repeat;
+  // width: 100vw;
+  // height: 200vh;
+  // background-size: 100% 100%;
   .edition_heart {
     width: 95%;
     height: 95%;
@@ -530,13 +582,24 @@ export default {
         }
         ul,
         li {
-          border-bottom: 1px solid #2bfffb;
-          padding: 0;
-          padding-bottom: 4px;
+          list-style: none;
           margin: 0;
+          padding: 0;
+        }
+        ul li {
+          display: flex;
+          width: 95%;
+          height: 32px;
+          line-height: 20px;
+          border-bottom: 1px solid #2bfffb;
+          font-size: 12px;
           list-style: none;
           color: #fff;
-          margin: 9px 4px;
+          p {
+            margin-left: 10%;
+            width: 20%;
+            height: 18px;
+          }
         }
         ul li:last-child {
           border: 0;

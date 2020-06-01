@@ -11,17 +11,22 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Dashboard',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
+  },
+  // 城市详情信息
+  {
+    path: '/citydetail/:cityname',
+    name: 'Citydetail',
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/citydetail.vue')
   },
   // 404
   {
     path: '/404',
     name: 'NotFound',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/404.vue')
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/404.vue')
   },
   // 重定向
   {

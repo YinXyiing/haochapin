@@ -75,17 +75,19 @@ export default {
     box-shadow: inset 0px 0px 8px 6px rgba(0, 173, 255, 0.4);
     margin-left: 36px;
     cursor: pointer;
+    z-index: 999;
   }
   .nav_border {
     width: 155px;
     height: 560px;
-    background-color: rgba(0, 173, 255, 0.2);
+    background-color: rgba(4, 37, 74, 0.86);
+    // background-color: #fff;
     cursor: pointer;
     padding-top: 30px;
     margin-top: -15px;
     padding-left: 25px;
     position: absolute;
-    z-index: 999;
+    z-index: 888;
   }
   .phome {
     color: #00adff;
@@ -95,7 +97,7 @@ export default {
     line-height: 40px;
     color: #00adff;
     border-radius: 8px;
-    box-shadow: inset 0px 0px 8px 6px rgba(0, 173, 255, 0.6);
+    box-shadow: inset 0px 0px 8px 6px rgb(0, 173, 255);
   }
   .divBorder {
     width: 132px;
