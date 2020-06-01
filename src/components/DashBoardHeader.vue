@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-28 16:28:08
- * @LastEditTime: 2020-05-28 17:59:44
+ * @LastEditTime: 2020-06-01 14:34:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \government-service-assessment\src\components\DashBoardHeader.vue
@@ -14,6 +14,7 @@
       </div>
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
+
     <div class="nav_border" v-if="isShowNav">
       <div class="phome">
         <router-link to="/">
@@ -86,14 +87,11 @@ export default {
     },
     navHidden () {
       this.isShowNav = false
-    },
-    tohome () {
-      this.$router.push('/overrank')
-    },
-    overrank () {
-      this.$router.push('/overrank')
 
-    }
+    },
+
+
+
   }
 }
 </script>
@@ -135,6 +133,9 @@ export default {
     padding-left: 25px;
     position: absolute;
     z-index: 888;
+    .router-link-active {
+      text-decoration: none;
+    }
   }
   .phome {
     color: #00adff;
