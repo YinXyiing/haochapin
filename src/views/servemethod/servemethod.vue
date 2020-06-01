@@ -6,7 +6,7 @@
         <div class="rank_bord">
           <div class="rank_head">
             <p class="rank_circle"></p>
-            <span>总体排名</span>
+            <span>服务方式完备度排名</span>
           </div>
           <div class="rank_table">
             <div class="rank_table_head">
@@ -73,53 +73,14 @@
           <div class="map_board">
             <div class="map_title">
               <p class="map_circle"></p>
-              <span>服务能力分布</span>
+              <span>市级政府服务平台集约化程度</span>
             </div>
             <div class="echarts">
               <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
             </div>
           </div>
-          <div class="map_right">
-            <div class="overview_fir">
-              <div class="overview_head">
-                <p class="overview_circle"></p>
-                <span>市级政府网上服务能力年度对比</span>
-              </div>
-              <div class="city_level" ref="city_level" style="height:100%;width:100%"></div>
-            </div>
-            <div class="overview_sec">
-              <div class="overview_head">
-                <p class="overview_circle"></p>
-                <span>市级政府网上服务能力年度对比</span>
-              </div>
-              <div class="area_level" ref="area_level" style="height:100%;width:100%"></div>
-            </div>
-          </div>
         </div>
-        <div class="dashboard_right_bottom">
-          <div class="analysis_title">
-            <div class="analysis_circle">
-              <p class="data_circle"></p>
-              <span>数据分析</span>
-            </div>
-            <!-- 数据分析选项按钮 -->
-          </div>
-          <div>
-            <!-- 数据分析数据面板显示 -->
-            <div
-              class="total_rank_board"
-              ref="total_matter_board"
-              :class="[(selectIndex==0)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:100%"
-            ></div>
-            <div
-              class="right_matter_board"
-              ref="right_matter_board"
-              :class="[(selectIndex==1)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:900px"
-            ></div>
-          </div>
-        </div>
+        <div class="dashboard_right_bottom"></div>
       </section>
     </div>
   </div>
@@ -598,7 +559,7 @@ export default {
     .dashboard_right {
       float: left;
       width: 70%;
-      height: 100%;
+      height: 900px;
       margin-left: 14px;
       margin-top: 12px;
       .dashboard_right_top {

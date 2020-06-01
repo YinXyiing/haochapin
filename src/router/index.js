@@ -28,6 +28,11 @@ const routes = [{
     name: 'Overrank',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/overrank/overrank.vue')
   },
+  {
+    path: '/servemethod',
+    name: 'Overrank',
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/servemethod/servemethod.vue')
+  },
   // 404
   {
     path: '/404',

@@ -14,17 +14,57 @@
       </div>
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
-    <div class="nav_border" v-if="isShowNav" @mouseleave="navHidden">
-      <p class="phome" @click="tohome">首頁</p>
-      <p class="phome">各地区情况</p>
-      <p class="phome">整体分析</p>
-      <div class="divBorder" @click="overrank">总体排名</div>
-      <div class="divBorder">服务方式完备度</div>
-      <div class="divBorder">服务事项覆盖度</div>
-      <div class="divBorder">办理指南准确度</div>
-      <div class="divBorder">在线办理成熟度</div>
-      <div class="divBorder">在线服务成效度</div>
-      <p class="phome">数据对比</p>
+    <div class="nav_border" v-if="isShowNav">
+      <div class="phome">
+        <router-link to="/">
+          <span>首页</span>
+        </router-link>
+      </div>
+      <div class="phome">
+        <router-link to="/">
+          <span>各地区情况</span>
+        </router-link>
+      </div>
+      <div class="phome">
+        <router-link to="/">
+          <span>整体分析</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/overrank">
+          <span>总体排名</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/servemethod">
+          <span>服务方式完备度</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/">
+          <span>服务事项覆盖度</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/">
+          <span>办理指南准确度</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/">
+          <span>在线办理成熟度</span>
+        </router-link>
+      </div>
+      <div class="divBorder">
+        <router-link to="/">
+          <span>在线服务成效度</span>
+        </router-link>
+      </div>
+      <p class="phome">
+        <router-link to="/">
+          <span>数据对比</span>
+        </router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -48,7 +88,7 @@ export default {
       this.isShowNav = false
     },
     tohome () {
-      this.$router.push('/')
+      this.$router.push('/overrank')
     },
     overrank () {
       this.$router.push('/overrank')
@@ -100,11 +140,36 @@ export default {
     color: #00adff;
     width: 132px;
     height: 40px;
-    text-align: center;
-    line-height: 40px;
-    color: #00adff;
     border-radius: 8px;
     box-shadow: inset 0px 0px 8px 6px rgb(0, 173, 255);
+    text-align: center;
+    line-height: 100%;
+    margin-top: 5px;
+
+    .router-link-active {
+      width: 100%;
+      height: 98%;
+
+      text-align: center;
+      text-decoration: none;
+      align-items: center;
+      line-height: 100%;
+      color: #00adff !important;
+    }
+
+    a {
+      width: 100%;
+      height: 100%;
+      color: #00adff !important;
+      text-decoration: none;
+      text-align: center;
+    }
+    span {
+      display: block;
+      width: 100%;
+      height: 90%;
+      padding-top: 10%;
+    }
   }
   .divBorder {
     width: 132px;
@@ -112,8 +177,30 @@ export default {
     color: #00adff;
     border-bottom: 1px solid #00adff;
     margin-top: 12px;
-    text-align: center;
-    line-height: 40px;
+    .router-link-active {
+      width: 100%;
+      height: 98%;
+
+      text-align: center;
+      text-decoration: none;
+      align-items: center;
+      line-height: 100%;
+      color: #00adff !important;
+    }
+
+    a {
+      width: 100%;
+      height: 100%;
+      color: #00adff !important;
+      text-decoration: none;
+      text-align: center;
+    }
+    span {
+      display: block;
+      width: 100%;
+      height: 90%;
+      padding-top: 10%;
+    }
   }
 }
 </style>
