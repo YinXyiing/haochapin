@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-28 16:28:08
- * @LastEditTime: 2020-05-28 17:59:44
+ * @LastEditTime: 2020-06-01 14:34:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \government-service-assessment\src\components\DashBoardHeader.vue
@@ -15,15 +15,15 @@
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
     <div class="nav_border" v-if="isShowNav" @mouseleave="navHidden">
-      <p class="phome" @click="tohome">首頁</p>
-      <p class="phome">各地区情况</p>
-      <p class="phome">整体分析</p>
-      <div class="divBorder" @click="overrank">总体排名</div>
-      <div class="divBorder">服务方式完备度</div>
-      <div class="divBorder">服务事项覆盖度</div>
-      <div class="divBorder">办理指南准确度</div>
-      <div class="divBorder">在线办理成熟度</div>
-      <div class="divBorder">在线服务成效度</div>
+      <router-link to="/"><p class="phome">首页</p></router-link>
+      <router-link to="/"><p class="phome">各地区情况</p></router-link>
+      <router-link to="/"><p class="phome">整体分析</p></router-link>
+      <router-link to="/overrank"><div class="divBorder">总体排名</div></router-link>
+      <router-link to="/serviceCoverage"><div class="divBorder">服务方式完备度</div></router-link>
+      <router-link to="/serviceCoverage"><div class="divBorder">服务事项覆盖度</div></router-link>
+      <router-link to="/serviceCoverage"><div class="divBorder">办理指南准确度</div></router-link>
+      <router-link to="/serviceCoverage"><div class="divBorder">在线办理成熟度</div></router-link>
+      <router-link to="/serviceCoverage"><div class="divBorder">在线服务成效度</div></router-link>
       <p class="phome">数据对比</p>
     </div>
   </div>
@@ -46,13 +46,6 @@ export default {
     },
     navHidden () {
       this.isShowNav = false
-    },
-    tohome () {
-      this.$router.push('/')
-    },
-    overrank () {
-      this.$router.push('/overrank')
-
     }
   }
 }
@@ -95,6 +88,9 @@ export default {
     padding-left: 25px;
     position: absolute;
     z-index: 888;
+    .router-link-active{
+      text-decoration: none
+    }
   }
   .phome {
     color: #00adff;
