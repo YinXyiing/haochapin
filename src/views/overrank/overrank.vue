@@ -14,8 +14,7 @@
         <div class="rank_bord">
           <div class="rank_head">
             <p class="rank_circle"></p>
-            <span>总体排名前十名</span>
-            <div class="rank_more">更多》</div>
+            <span>总体排名</span>
           </div>
           <div class="rank_table">
             <div class="rank_table_head">
@@ -135,71 +134,10 @@
           <div class="analysis_title">
             <div class="analysis_circle">
               <p class="data_circle"></p>
-              <span>数据分析</span>
-            </div>
-            <!-- 数据分析选项按钮 -->
-            <div class="analysis_tab">
-              <div @click="setSelect(0)" class="total_rank">
-                <img src="../../assets/dashboard/总体排名@1x.png" alt />
-                <span>总体排名</span>
-              </div>
-              <div @click="setSelect(1)" class="right_matter">
-                <img src="../../assets/dashboard/权力事项@1x.png" alt />
-                <span>权力事项</span>
-              </div>
-              <div @click="setSelect(2)" class="apply_matter">
-                <img src="../../assets/dashboard/依申请事项@1x.png" alt />
-                <span>依申请事项</span>
-              </div>
-              <div @click="setSelect(3)" class="serve_matter">
-                <img src="../../assets/dashboard/公共服务事项@1x.png" alt />
-                <span>公共服务事项</span>
-              </div>
-              <div @click="setSelect(4)" class="settle_depart">
-                <img src="../../assets/dashboard/进驻部门@1x.png" alt />
-                <span>进驻部门</span>
-              </div>
-              <div @click="setSelect(5)" class="guide_ele">
-                <img src="../../assets/dashboard/指南要素@1x.png" alt />
-                <span>指南要素</span>
-              </div>
+              <span>市级政府网上政务能力整体排名分析</span>
             </div>
           </div>
-          <div>
-            <!-- 数据分析数据面板显示 -->
-            <div
-              class="total_rank_board"
-              ref="total_matter_board"
-              :class="[(selectIndex==0)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:100%"
-            ></div>
-            <div
-              class="right_matter_board"
-              ref="right_matter_board"
-              :class="[(selectIndex==1)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:900px"
-            ></div>
-            <div
-              class="apply_matter_board"
-              ref="apply_matter_board"
-              :class="[(selectIndex==2)?'demonstrateA':'demonstrateB']"
-            ></div>
-            <div
-              class="serve_matter_board"
-              ref="serve_matter_board"
-              :class="[(selectIndex==3)?'demonstrateA':'demonstrateB']"
-            ></div>
-            <div
-              class="settle_depart_board"
-              ref="settle_depart_board"
-              :class="[(selectIndex==4)?'demonstrateA':'demonstrateB']"
-            ></div>
-            <div
-              class="guide_ele_board"
-              ref="guide_ele_board"
-              :class="[(selectIndex==5)?'demonstrateA':'demonstrateB']"
-            ></div>
-          </div>
+          <div class="right_matter_board" ref="right_matter_board" style="height:200px;width:900px"></div>
         </div>
       </section>
     </div>
@@ -525,12 +463,7 @@ export default {
     width: 95%;
     height: 95%;
     padding: 4px 30px;
-    .demonstrateA {
-      display: block;
-    }
-    .demonstrateB {
-      display: none;
-    }
+
     .dashboard_left {
       width: 24%;
       height: 100%;

@@ -15,10 +15,10 @@
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
     <div class="nav_border" v-if="isShowNav" @mouseleave="navHidden">
-      <p class="phome">首頁</p>
+      <p class="phome" @click="tohome">首頁</p>
       <p class="phome">各地区情况</p>
       <p class="phome">整体分析</p>
-      <div class="divBorder">总体排名</div>
+      <div class="divBorder" @click="overrank">总体排名</div>
       <div class="divBorder">服务方式完备度</div>
       <div class="divBorder">服务事项覆盖度</div>
       <div class="divBorder">办理指南准确度</div>
@@ -46,6 +46,13 @@ export default {
     },
     navHidden () {
       this.isShowNav = false
+    },
+    tohome () {
+      this.$router.push('/')
+    },
+    overrank () {
+      this.$router.push('/overrank')
+
     }
   }
 }

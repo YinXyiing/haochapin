@@ -22,6 +22,12 @@ const routes = [{
     name: 'Citydetail',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/citydetail.vue')
   },
+  // 总体排名
+  {
+    path: '/overrank',
+    name: 'Overrank',
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/overrank/overrank.vue')
+  },
   // 404
   {
     path: '/404',
