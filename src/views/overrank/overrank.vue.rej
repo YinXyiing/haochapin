@@ -1,0 +1,9 @@
+diff a/src/views/overrank/overrank.vue b/src/views/overrank/overrank.vue	(rejected hunks)
+@@ -582,6 +582,7 @@
+             margin-left: 8px;
+             border-radius: 50%;
+             background: gold;
++            margin-right: 6px;
+             float: left;
+           }
+           span {

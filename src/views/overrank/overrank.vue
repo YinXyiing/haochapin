@@ -422,7 +422,6 @@ export default {
   .edition_heart {
     width: 100%;
     height: 100%;
-
     .table_backgrA {
       background-color: rgba(43, 255, 251, 0.2);
     }
@@ -459,7 +458,6 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
-            margin-right: 6px;
             float: left;
           }
           span {
@@ -582,7 +580,6 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
-            margin-right: 6px;
             float: left;
           }
           span {
@@ -623,7 +620,6 @@ export default {
               margin-left: 8px;
               border-radius: 50%;
               background: gold;
-              margin-right: 6px;
               float: left;
             }
             span {
@@ -653,7 +649,6 @@ export default {
                 margin-left: 8px;
                 border-radius: 50%;
                 background: gold;
-                margin-right: 6px;
                 float: left;
               }
               span {
@@ -678,7 +673,6 @@ export default {
                 margin-left: 8px;
                 border-radius: 50%;
                 background: gold;
-                margin-right: 6px;
                 float: left;
               }
               span {
@@ -762,7 +756,6 @@ export default {
               margin-left: 8px;
               border-radius: 50%;
               background: gold;
-              margin-right: 6px;
               float: left;
             }
             span {

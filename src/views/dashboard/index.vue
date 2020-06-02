@@ -15,7 +15,7 @@
           <div class="rank_head">
             <p class="rank_circle"></p>
             <span>总体排名前十名</span>
-            <div class="rank_more" @click="tomore">更多》</div>
+            <div class="rank_more">更多》</div>
           </div>
           <div class="rank_table">
             <div class="rank_table_head">
