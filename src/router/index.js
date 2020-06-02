@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-27 20:44:32
- * @LastEditTime: 2020-05-28 10:47:22
+ * @LastEditTime: 2020-06-01 17:11:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \government-service-assessment\src\router\index.js
@@ -21,6 +21,12 @@ const routes = [{
     path: '/citydetail/:cityname',
     name: 'Citydetail',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/citydetail.vue')
+  },
+  // 服务事项覆盖度
+  {
+    path: '/serviceCoverage',
+    name: 'ServiSceCoverage',
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/service-coverage/index.vue')
   },
   // 总体排名
   {
