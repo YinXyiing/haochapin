@@ -15,7 +15,7 @@
     </div>
     <div class="nav_btn" @click="navShow">目录导航</div>
 
-    <div class="nav_border" v-if="isShowNav">
+    <div class="nav_border" v-if="isShowNav" @mouseleave="navHidden">
       <div class="phome">
         <router-link to="/">
           <span>首页</span>
@@ -57,7 +57,7 @@
         </router-link>
       </div>
       <div class="divBorder">
-        <router-link to="/">
+        <router-link to="/serviceEffect">
           <span>在线服务成效度</span>
         </router-link>
       </div>

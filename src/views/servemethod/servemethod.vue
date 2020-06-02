@@ -78,15 +78,96 @@
             <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
           </div>
         </div>
+        <div class="num_analysis">
+          <div class="analysis_title">
+            <p class="analysis_circle"></p>
+            <span>市本级部门进驻市级网上政务服务平台的数据分析</span>
+          </div>
+          <div class="analysis_content">
+            <div class="content_fir">
+              <img src="../../assets/dashboard/省级政务服务平台@1x.png" alt />
+              <p>市级政务服务平台</p>
+              <p>进一张网办所有事</p>
+            </div>
+            <div class="content_sec">
+              <div class="city_level">
+                <p class="city_box">地市级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>441</span>个地市政府
+                </p>
+              </div>
+              <div class="county_level">
+                <p class="county_box">区县级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>3278</span>县级政府
+                </p>
+              </div>
+              <div class="town_level">
+                <p class="town_box">乡镇级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个乡镇
+                </p>
+              </div>
+              <div class="village_level">
+                <p class="village_box">村居级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>24431</span>个村居
+                </p>
+              </div>
+            </div>
+            <div class="content_thr">
+              <div class="city_depart">
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个市直属
+                </p>
+              </div>
+              <div class="county_depart">
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个县直属
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="serve_right"></section>
+      <section class="serve_right">
+        <div class="annual_comp">
+          <div class="annual_title">
+            <p class="annual_circle"></p>
+            <span>市级政府网上政务能力年度对比</span>
+          </div>
+          <div class="annual_comp_chart" ref="annual_comp_chart"></div>
+        </div>
+        <div class="unified_entr">
+          <div class="unified_title">
+            <p class="unified_circle"></p>
+            <span>政务服务界面统一入口</span>
+          </div>
+          <div class="unified_chart_box">
+            <div ref="unified_chart_left" style="width:100%;height:100%;"></div>
+            <div ref="unified_chart_right" style="width:100%;height:100%;"></div>
+          </div>
+        </div>
+        <div class="serve_hall">
+          <div class="serve_title">
+            <p class="serve_circle"></p>
+            <span>市级政府实体政务服务大厅建设情况</span>
+          </div>
+          <div class="serve_hall_chart" ref="serve_hall_chart"></div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
 <script>
 import vDashBoardHeader from '@/components/DashBoardHeader'
 import echarts from 'echarts'
-// import '../../../node_modules/echarts/map/js/province/shanxi'
 import '../../assets/js/shanxi'
 export default {
   data () {
@@ -119,162 +200,166 @@ export default {
   },
   mounted () {
     this.chinaConfigure()
-    // const totaldata = echarts.init(this.$refs.total_matter_board)
-    // const cityleveldata = echarts.init(this.$refs.city_level)
-    // const arealeveldata = echarts.init(this.$refs.area_level)
+    const annualdata = echarts.init(this.$refs.annual_comp_chart)
+    const servedata = echarts.init(this.$refs.serve_hall_chart)
+    const unifiedleftdata = echarts.init(this.$refs.unified_chart_left)
+    const unifiedrightdata = echarts.init(this.$refs.unified_chart_right)
+    var annualdataOption = {
+      legend: {},
+      tooltip: {},
+      dataset: {
+        dimensions: ['product', '2015', '2016', '2017'],
+        source: [
+          { product: '已经开通', 2015: 43.3, 2016: 35.8, 2017: 23.7 },
+          { product: '暂未开通', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
 
-    var polyOption = {
-      // title: {
-      //   text: '折线图堆叠'
-      // },
+
+        ]
+      },
+      xAxis: {
+        type: 'category',
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          },
+          axisLabel: {
+            rotate: 30,
+          }
+        }
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      // Declare several bar series, each will be mapped
+      // to a column of dataset.source by default.
+      series: [
+        { type: 'bar' },
+        { type: 'bar' },
+        { type: 'bar' },
+      ]
+    }
+    var servedataOption = {
+      legend: {},
+      tooltip: {},
+      dataset: {
+        dimensions: ['product', '2015', '2016', '2017'],
+        source: [
+          { product: '已经建立', 2015: 43.3, 2016: 85.8, 2017: 13.7 },
+          { product: '准备建立', 2015: 43.1, 2016: 53.4, 2017: 55.1 },
+          { product: '暂未计划', 2015: 13.1, 2016: 43.4, 2017: 55.1 },
+        ]
+      },
+      xAxis: {
+        type: 'category',
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      // Declare several bar series, each will be mapped
+      // to a column of dataset.source by default.
+      series: [
+        { type: 'bar' },
+        { type: 'bar' },
+        { type: 'bar' }
+      ]
+    }
+    var unifiedleftOption = {
       tooltip: {
-        trigger: 'axis'
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
       legend: {
-        data: ['2018', '2017', '2016']
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true,
-        color: '#fff'
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        },
-
-        type: 'category',
-        boundaryGap: false,
-        data: ['太原', '大同', '朔州', '阳泉', '长治', '忻州', '吕梁', '晋中', '临汾', '运城', '晋城']
-      },
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        }
+        orient: 'vertical',
+        top: 10,
+        data: ['一级域名', '二级域名']
       },
       series: [
         {
-          name: '2018',
-          type: 'line',
-          stack: '总量',
-          data: [120, 132, 101, 134, 90, 230, 210, 120, 132, 101, 134]
-        },
-        {
-          name: '2017',
-          type: 'line',
-          stack: '总量',
-          data: [220, 182, 191, 234, 290, 330, 310, 220, 182, 191, 234]
-        },
-        {
-          name: '2016',
-          type: 'line',
-          stack: '总量',
-          data: [150, 232, 201, 154, 190, 330, 410, 150, 232, 201, 154]
-        }
-      ]
-    }
-    var leveldataOption = {
-      legend: {},
-      tooltip: {},
-      dataset: {
-        dimensions: ['product', '2015', '2016', '2017'],
-        source: [
-          { product: '非常高', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-          { product: '高', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-          { product: '中', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-          { product: '低', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          name: '访问来源',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '20',
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 335, name: '一级域名' },
+            { value: 310, name: '二级域名' },
 
-        ]
-      },
-      xAxis: {
-        type: 'category',
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
+          ]
         }
-      },
-      yAxis: {
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        }
-      },
-      // Declare several bar series, each will be mapped
-      // to a column of dataset.source by default.
-      series: [
-        { type: 'bar' },
-        { type: 'bar' },
-        { type: 'bar' }
       ]
     }
-    var areadataOption = {
-      legend: {},
-      tooltip: {},
-      dataset: {
-        dimensions: ['product', '2015', '2016', '2017'],
-        source: [
-          { product: '华北', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-          { product: '东北', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-          { product: '华中', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-          { product: '华东', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '华南', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '西南', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '西北', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+    var unifiedrightOption = {
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b}: {c} ({d}%)'
+      },
+      legend: {
+        orient: 'vertical',
+        top: 10,
+        data: ['一级域名', '二级域名']
+      },
+      series: [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: ['50%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: '20',
+              fontWeight: 'bold'
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          data: [
+            { value: 335, name: '一级域名' },
+            { value: 310, name: '二级域名' },
 
-        ]
-      },
-      xAxis: {
-        type: 'category',
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
+          ]
         }
-      },
-      yAxis: {
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        }
-      },
-      // Declare several bar series, each will be mapped
-      // to a column of dataset.source by default.
-      series: [
-        { type: 'bar' },
-        { type: 'bar' },
-        { type: 'bar' }
       ]
     }
-    // cityleveldata.setOption(leveldataOption)
-    // totaldata.setOption(polyOption)
-    // arealeveldata.setOption(areadataOption)
-    // citydata.setOption(dataOption)
-    // var that = this
-    // this.myChart.on('click', function (params) {
-    //   var cityname = params.name
-    //   that.$router.push(`/citydetail/${cityname}`)
-    // })
+    annualdata.setOption(annualdataOption)
+    servedata.setOption(servedataOption)
+    unifiedleftdata.setOption(unifiedleftOption)
+    unifiedrightdata.setOption(unifiedrightOption)
   },
   beforeDestroy () {
     if (!this.chart) {
@@ -406,6 +491,7 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
+            margin-right: 8px;
             float: left;
           }
           span {
@@ -492,10 +578,12 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
           .nav_circle {
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            margin-right: 6px;
             border: 2px solid #00adff;
             align-items: center;
           }
@@ -529,6 +617,7 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
+            margin-right: 8px;
             float: left;
           }
           span {
@@ -564,6 +653,8 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
+            margin-right: 8px;
+            margin-left: 8px;
             float: left;
           }
           span {
@@ -571,10 +662,259 @@ export default {
           }
         }
       }
+      .num_analysis {
+        width: 100%;
+        height: 280px;
+        border: 1px solid #00adff;
+        margin-top: 16px;
+        .analysis_title {
+          width: 100%;
+          height: 40px;
+          background-color: rgba(43, 255, 251, 0.2);
+          line-height: 40px;
+          .analysis_circle {
+            width: 10px;
+            height: 10px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: gold;
+            float: left;
+            margin-right: 8px;
+          }
+          span {
+            color: #00adff;
+          }
+        }
+        .analysis_content {
+          width: 100%;
+          height: 220px;
+          padding-top: 20px;
+          font-size: 16px;
+          display: flex;
+          .content_fir {
+            width: 26%;
+            height: 80%;
+            padding: 5% 3px;
+            text-align: center;
+            color: #56bfe7;
+          }
+          .content_sec {
+            width: 40%;
+            height: 100%;
+            margin-left: 14px;
+            .city_level {
+              display: flex;
+              color: #00adff;
+              .city_box {
+                width: 62px;
+                height: 25px;
+                background-color: rgba(43, 255, 251, 0.2);
+                text-align: center;
+                line-height: 25px;
+                font-size: 14px;
+                border-radius: 8px;
+              }
+              .el-icon-caret-right {
+                color: gold;
+                margin-top: 18px;
+              }
+              p:last-child {
+                color: #fff;
+                span {
+                  color: #00adff;
+                }
+              }
+            }
+            .county_level {
+              display: flex;
+              color: #00adff;
+              .county_box {
+                width: 62px;
+                height: 25px;
+                background-color: rgba(43, 255, 251, 0.2);
+                text-align: center;
+                line-height: 25px;
+                font-size: 14px;
+                border-radius: 8px;
+              }
+              .el-icon-caret-right {
+                color: gold;
+                margin-top: 18px;
+              }
+              p:last-child {
+                color: #fff;
+                span {
+                  color: #00adff;
+                }
+              }
+            }
+            .town_level {
+              display: flex;
+              color: #00adff;
+              .town_box {
+                width: 62px;
+                height: 25px;
+                background-color: rgba(43, 255, 251, 0.2);
+                text-align: center;
+                line-height: 25px;
+                font-size: 14px;
+                border-radius: 8px;
+              }
+              .el-icon-caret-right {
+                color: gold;
+                margin-top: 18px;
+              }
+              p:last-child {
+                color: #fff;
+                span {
+                  color: #00adff;
+                }
+              }
+            }
+            .village_level {
+              display: flex;
+              color: #00adff;
+              .village_box {
+                width: 62px;
+                height: 25px;
+                background-color: rgba(43, 255, 251, 0.2);
+                text-align: center;
+                line-height: 25px;
+                font-size: 14px;
+                border-radius: 8px;
+              }
+              .el-icon-caret-right {
+                color: gold;
+                margin-top: 18px;
+              }
+              p:last-child {
+                color: #fff;
+                span {
+                  color: #00adff;
+                }
+              }
+            }
+          }
+          .content_thr {
+            width: 28%;
+            height: 100%;
+            color: #00adff;
+
+            .city_depart,
+            .county_depart {
+              display: flex;
+              p:last-child {
+                color: #fff;
+              }
+            }
+            span {
+              color: #00adff;
+            }
+            .el-icon-caret-right {
+              color: gold;
+              margin-right: 4px;
+              margin-top: 18px;
+            }
+          }
+        }
+      }
     }
     .serve_right {
-      width: 24%;
+      width: 18%;
       height: 920px;
+      float: left;
+      margin-left: 12px;
+      font-size: 12px;
+      .annual_comp {
+        width: 100%;
+        height: 310px;
+        border: 1px solid #00adff;
+        margin-bottom: 16px;
+        .annual_title {
+          width: 100%;
+          height: 40px;
+          background-color: rgba(43, 255, 251, 0.2);
+          line-height: 40px;
+          .annual_circle {
+            width: 10px;
+            height: 10px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: gold;
+            margin-right: 8px;
+            margin-left: 8px;
+            float: left;
+          }
+          span {
+            color: #00adff;
+          }
+        }
+        .annual_comp_chart {
+          width: 90%;
+          height: 90%;
+          margin-left: 6px;
+        }
+      }
+      .unified_entr {
+        width: 100%;
+        height: 265px;
+        border: 1px solid #00adff;
+        margin-bottom: 16px;
+        .unified_title {
+          width: 100%;
+          height: 40px;
+          background-color: rgba(43, 255, 251, 0.2);
+          line-height: 40px;
+          .unified_circle {
+            width: 10px;
+            height: 10px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: gold;
+            margin-right: 8px;
+            margin-left: 8px;
+            float: left;
+          }
+          span {
+            color: #00adff;
+          }
+        }
+        .unified_chart_box {
+          width: 100%;
+          height: 220px;
+          display: flex;
+        }
+      }
+      .serve_hall {
+        width: 100%;
+        height: 305px;
+        border: 1px solid #00adff;
+        border-radius: 0 0 25px 0;
+        .serve_title {
+          width: 100%;
+          height: 40px;
+          background-color: rgba(43, 255, 251, 0.2);
+          line-height: 40px;
+          .serve_circle {
+            width: 10px;
+            height: 10px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: gold;
+            margin-right: 8px;
+            margin-left: 8px;
+            float: left;
+          }
+          span {
+            color: #00adff;
+          }
+        }
+        .serve_hall_chart {
+          width: 100%;
+          height: 100%;
+          margin-left: 6px;
+        }
+      }
     }
   }
 }

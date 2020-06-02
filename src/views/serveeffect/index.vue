@@ -1,12 +1,86 @@
 <template>
   <div class="dashboard">
     <div class="edition_heart">
-      <v-dashBoardHeader>网上政务服务能力调查评估</v-dashBoardHeader>
+      <v-dashBoardHeader>市级政府网上政务服务能力调查评估</v-dashBoardHeader>
+      <section class="dashboard_right">
+        <section class="effect_top">
+          <div class="map_box">
+            <div class="map_title">
+              <p class="map_circle"></p>
+              <span>市级行政许可事项办理跑动次数情况分析</span>
+            </div>
+            <div class="echarts">
+              <div :style="{height:'540px',width:'100%'}" ref="myEchart"></div>
+            </div>
+          </div>
+          <div class="user_analysis">
+            <div class="user_happ">
+              <div class="user_title">
+                <p class="user_circle"></p>
+                <span>市级平台用户情况分析</span>
+              </div>
+              <div class="user_data">
+                <div class="happ_top">
+                  <div class="has_first">
+                    <img src="../../assets/dashboard/个人用户.png" alt />
+                    <p>个人用户</p>
+                  </div>
+                  <div class="has_second">
+                    <p>注册用户</p>
+                    <p>1.66亿</p>
+                  </div>
+                  <div class="has_third">
+                    <p>实名用户</p>
+                    <p>1.55亿</p>
+                  </div>
+                </div>
+                <div class="happ_bottom">
+                  <div class="has_first">
+                    <img src="../../assets/dashboard/企业用户.png" alt />
+                    <p>企业用户</p>
+                  </div>
+                  <div class="has_second">
+                    <p>注册用户</p>
+                    <p>1.66亿</p>
+                  </div>
+                  <div class="has_third">
+                    <p>实名用户</p>
+                    <p>1.55亿</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="user_exper">
+              <div class="user_title">
+                <p class="user_circle"></p>
+                <span>市级政府服务平台搜索功能用户体验分析</span>
+              </div>
+              <div class="exper_matter" ref="exper_matter" style="height:100%;width:100%;"></div>
+            </div>
+          </div>
+        </section>
+        <section class="effect_bottom">
+          <div class="chart_left">
+            <div class="user_title">
+              <p class="user_circle"></p>
+              <span>市级行政许可事项即办件占比分析</span>
+            </div>
+            <div class="donow_matter" ref="donow_matter" style="height:100%;width:100%;"></div>
+          </div>
+          <div class="chart_right">
+            <div class="user_title">
+              <p class="user_circle"></p>
+              <span>市级行政许可事项办理期压缩情况分析</span>
+            </div>
+            <div class="compre_matter" ref="compre_matter" style="height:100%;width:100%;"></div>
+          </div>
+        </section>
+      </section>
       <section class="dashboard_left">
         <div class="rank_bord">
           <div class="rank_head">
             <p class="rank_circle"></p>
-            <span>总体排名</span>
+            <span>服务方式完备度排名</span>
           </div>
           <div class="rank_table">
             <div class="rank_table_head">
@@ -68,66 +142,12 @@
           </div>
         </div>
       </section>
-      <section class="dashboard_right">
-        <div class="dashboard_right_top">
-          <div class="map_board">
-            <div class="map_title">
-              <p class="map_circle"></p>
-              <span>服务能力分布</span>
-            </div>
-            <div class="echarts">
-              <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
-            </div>
-          </div>
-          <div class="map_right">
-            <div class="overview_fir">
-              <div class="overview_head">
-                <p class="overview_circle"></p>
-                <span>市级政府网上服务能力年度对比</span>
-              </div>
-              <div class="city_level" ref="city_level" style="height:100%;width:100%"></div>
-            </div>
-            <div class="overview_sec">
-              <div class="overview_head">
-                <p class="overview_circle"></p>
-                <span>市级政府网上服务能力年度对比</span>
-              </div>
-              <div class="area_level" ref="area_level" style="height:100%;width:100%"></div>
-            </div>
-          </div>
-        </div>
-        <div class="dashboard_right_bottom">
-          <div class="analysis_title">
-            <div class="analysis_circle">
-              <p class="data_circle"></p>
-              <span>数据分析</span>
-            </div>
-            <!-- 数据分析选项按钮 -->
-          </div>
-          <div>
-            <!-- 数据分析数据面板显示 -->
-            <div
-              class="total_rank_board"
-              ref="total_matter_board"
-              :class="[(selectIndex==0)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:100%"
-            ></div>
-            <div
-              class="right_matter_board"
-              ref="right_matter_board"
-              :class="[(selectIndex==1)?'demonstrateA':'demonstrateB']"
-              style="height:200px;width:900px"
-            ></div>
-          </div>
-        </div>
-      </section>
     </div>
   </div>
 </template>
 <script>
 import vDashBoardHeader from '@/components/DashBoardHeader'
 import echarts from 'echarts'
-// import '../../../node_modules/echarts/map/js/province/shanxi'
 import '../../assets/js/shanxi'
 export default {
   data () {
@@ -160,85 +180,26 @@ export default {
   },
   mounted () {
     this.chinaConfigure()
-    const totaldata = echarts.init(this.$refs.total_matter_board)
-    const cityleveldata = echarts.init(this.$refs.city_level)
-    const arealeveldata = echarts.init(this.$refs.area_level)
-
-    var polyOption = {
-      // title: {
-      //   text: '折线图堆叠'
-      // },
-      tooltip: {
-        trigger: 'axis'
-      },
-      legend: {
-        data: ['2018', '2017', '2016']
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true,
-        color: '#fff'
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      xAxis: {
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        },
-
-        type: 'category',
-        boundaryGap: false,
-        data: ['太原', '大同', '朔州', '阳泉', '长治', '忻州', '吕梁', '晋中', '临汾', '运城', '晋城']
-      },
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          show: true,
-          textStyle: {
-            color: '#fff'
-          }
-        }
-      },
-      series: [
-        {
-          name: '2018',
-          type: 'line',
-          stack: '总量',
-          data: [120, 132, 101, 134, 90, 230, 210, 120, 132, 101, 134]
-        },
-        {
-          name: '2017',
-          type: 'line',
-          stack: '总量',
-          data: [220, 182, 191, 234, 290, 330, 310, 220, 182, 191, 234]
-        },
-        {
-          name: '2016',
-          type: 'line',
-          stack: '总量',
-          data: [150, 232, 201, 154, 190, 330, 410, 150, 232, 201, 154]
-        }
-      ]
-    }
-    var leveldataOption = {
+    const donowDom = echarts.init(this.$refs.donow_matter)
+    const comperDom = echarts.init(this.$refs.compre_matter)
+    const experDom = echarts.init(this.$refs.exper_matter)
+    var donowOption = {
       legend: {},
       tooltip: {},
       dataset: {
         dimensions: ['product', '2015', '2016', '2017'],
         source: [
-          { product: '非常高', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-          { product: '高', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-          { product: '中', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-          { product: '低', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-
+          { product: '太原', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
+          { product: '大同', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
+          { product: '朔州', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
+          { product: '阳泉', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '长治', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '忻州', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '吕梁', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '晋中', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '临汾', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '运城', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
+          { product: '晋城', 2015: 72.4, 2016: 53.9, 2017: 39.1 }
         ]
       },
       xAxis: {
@@ -262,24 +223,26 @@ export default {
       // to a column of dataset.source by default.
       series: [
         { type: 'bar' },
-        { type: 'bar' },
-        { type: 'bar' }
+
       ]
     }
-    var areadataOption = {
+    var comperOption = {
       legend: {},
       tooltip: {},
       dataset: {
-        dimensions: ['product', '2015', '2016', '2017'],
+        dimensions: ['product', '2015'],
         source: [
-          { product: '华北', 2015: 43.3, 2016: 85.8, 2017: 93.7 },
-          { product: '东北', 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-          { product: '华中', 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-          { product: '华东', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '华南', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '西南', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-          { product: '西北', 2015: 72.4, 2016: 53.9, 2017: 39.1 },
-
+          { product: '太原', 2015: 43.3 },
+          { product: '大同', 2015: 83.1 },
+          { product: '朔州', 2015: 86.4 },
+          { product: '阳泉', 2015: 72.4 },
+          { product: '长治', 2015: 72.4 },
+          { product: '忻州', 2015: 72.4 },
+          { product: '吕梁', 2015: 72.4 },
+          { product: '晋中', 2015: 72.4 },
+          { product: '临汾', 2015: 72.4 },
+          { product: '运城', 2015: 72.4 },
+          { product: '晋城', 2015: 72.4 }
         ]
       },
       xAxis: {
@@ -303,19 +266,55 @@ export default {
       // to a column of dataset.source by default.
       series: [
         { type: 'bar' },
-        { type: 'bar' },
-        { type: 'bar' }
+
       ]
     }
-    cityleveldata.setOption(leveldataOption)
-    totaldata.setOption(polyOption)
-    arealeveldata.setOption(areadataOption)
-    // citydata.setOption(dataOption)
-    // var that = this
-    // this.myChart.on('click', function (params) {
-    //   var cityname = params.name
-    //   that.$router.push(`/citydetail/${cityname}`)
-    // })
+    var experOption = {
+      legend: {},
+      tooltip: {},
+      dataset: {
+        dimensions: ['product', '2015'],
+        source: [
+          { product: '太原', 2015: 43.3 },
+          { product: '大同', 2015: 83.1 },
+          { product: '朔州', 2015: 86.4 },
+          { product: '阳泉', 2015: 72.4 },
+          { product: '长治', 2015: 72.4 },
+          { product: '忻州', 2015: 72.4 },
+          { product: '吕梁', 2015: 72.4 },
+          { product: '晋中', 2015: 72.4 },
+          { product: '临汾', 2015: 72.4 },
+          { product: '运城', 2015: 72.4 },
+          { product: '晋城', 2015: 72.4 }
+        ]
+      },
+      xAxis: {
+        type: 'category',
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      yAxis: {
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff'
+          }
+        }
+      },
+      // Declare several bar series, each will be mapped
+      // to a column of dataset.source by default.
+      series: [
+        { type: 'bar' },
+
+      ]
+    }
+    donowDom.setOption(donowOption)
+    comperDom.setOption(comperOption)
+    experDom.setOption(experOption)
   },
   beforeDestroy () {
     if (!this.chart) {
@@ -415,43 +414,33 @@ export default {
 
 <style lang='scss' scoped>
 .dashboard {
-  // background: url("../../assets/dashboard/background.png") no-repeat;
-  // width: 100vw;
-  // height: 200vh;
-  // background-size: 100% 100%;
   .edition_heart {
     width: 100%;
     height: 100%;
-
     .table_backgrA {
       background-color: rgba(43, 255, 251, 0.2);
     }
     .table_backgrB {
       background-color: rgba(43, 255, 251, 0);
     }
-    .demonstrateA {
-      display: block;
-    }
-    .demonstrateB {
-      display: none;
-    }
     .dashboard_left {
       width: 24%;
       height: 100%;
       float: left;
-      margin-top: 12px;
       margin-left: 30px;
+      border: 1px solid #00adff;
+      border-radius: 0 25px 25px 0;
       .rank_bord {
         width: 100%;
         height: 920px;
-        border: 1px solid #00adff;
-        border-radius: 25px 0 0 0;
+
+        border-radius: 0 25px 25px 0;
         .rank_head {
           width: 100%;
           height: 40px;
-          // display: flex;
+          display: flex;
           background-color: rgba(43, 255, 251, 0.2);
-          border-radius: 25px 0 0 0;
+          border-radius: 0 25px 0 0;
           line-height: 40px;
           .rank_circle {
             width: 10px;
@@ -459,7 +448,7 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
-            margin-right: 6px;
+            margin-right: 8px;
             float: left;
           }
           span {
@@ -546,10 +535,12 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
           .nav_circle {
             width: 8px;
             height: 8px;
             border-radius: 50%;
+            margin-right: 6px;
             border: 2px solid #00adff;
             align-items: center;
           }
@@ -563,6 +554,7 @@ export default {
           }
         }
       }
+
       .indic_anay {
         width: 100%;
         height: 460px;
@@ -582,7 +574,7 @@ export default {
             margin-left: 8px;
             border-radius: 50%;
             background: gold;
-            margin-right: 6px;
+            margin-right: 8px;
             float: left;
           }
           span {
@@ -598,32 +590,50 @@ export default {
       }
     }
     .dashboard_right {
-      float: left;
+      .user_title {
+        width: 100%;
+        height: 40px;
+        background-color: rgba(43, 255, 251, 0.2);
+        line-height: 40px;
+        .user_circle {
+          width: 10px;
+          height: 10px;
+          margin-left: 8px;
+          margin-right: 6px;
+          border-radius: 50%;
+          background: gold;
+          float: left;
+        }
+        span {
+          color: #00adff;
+        }
+      }
       width: 70%;
       height: 100%;
-      margin-left: 14px;
-      margin-top: 12px;
-      .dashboard_right_top {
+      float: left;
+      .effect_top {
         width: 100%;
-        height: 620px;
-
-        .map_board {
-          width: 58%;
+        height: 590px;
+        display: flex;
+        .map_box {
+          width: 60%;
           height: 100%;
-          float: left;
+          margin-left: 6px;
           border: 1px solid #00adff;
+          border-radius: 25px 0 0 0;
           .map_title {
             width: 100%;
             height: 40px;
             background-color: rgba(43, 255, 251, 0.2);
             line-height: 40px;
+            border-radius: 25px 0 0 0;
             .map_circle {
               width: 10px;
               height: 10px;
               margin-left: 8px;
+              margin-right: 6px;
               border-radius: 50%;
               background: gold;
-              margin-right: 6px;
               float: left;
             }
             span {
@@ -631,172 +641,127 @@ export default {
             }
           }
         }
-        .map_right {
-          width: 38%;
+        .user_analysis {
+          width: 40%;
           height: 100%;
-          float: right;
-          .overview_fir {
+          margin-left: 16px;
+          .user_happ {
             width: 100%;
-            height: 290px;
+            height: 282px;
             border: 1px solid #00adff;
-            border-radius: 0 25px 0 0;
-            .overview_head {
+            .user_title {
               width: 100%;
               height: 40px;
-              // display: flex;
               background-color: rgba(43, 255, 251, 0.2);
-              border-radius: 0 25px 0 0;
               line-height: 40px;
-              .overview_circle {
+              .user_circle {
                 width: 10px;
                 height: 10px;
                 margin-left: 8px;
+                margin-right: 6px;
                 border-radius: 50%;
                 background: gold;
-                margin-right: 6px;
                 float: left;
               }
               span {
                 color: #00adff;
               }
             }
+            .user_data {
+              width: 100%;
+              height: 240px;
+              color: #fff;
+              .happ_top {
+                width: 100%;
+                height: 48%;
+                display: flex;
+                margin-left: 16px;
+                .has_first,
+                .has_second,
+                .has_third {
+                  width: 30%;
+                  height: 100%;
+                  p:last-child {
+                    color: #00adff;
+                  }
+                }
+                .has_first {
+                  text-align: center;
+                  margin-top: 16px;
+                  p {
+                    color: #00adff !important;
+                    margin-top: 1px;
+                  }
+                }
+              }
+              .happ_bottom {
+                width: 100%;
+                height: 48%;
+                display: flex;
+                margin-left: 16px;
+                .has_first,
+                .has_second,
+                .has_third {
+                  width: 30%;
+                  height: 100%;
+                  p:last-child {
+                    color: gold;
+                  }
+                }
+                .has_first {
+                  margin-top: 16px;
+                  text-align: center;
+                  p {
+                    color: #00adff !important;
+                    margin-top: 1px;
+                  }
+                }
+              }
+            }
           }
-          .overview_sec {
+          .user_exper {
             width: 100%;
-            height: 290px;
-            margin-top: 30px;
+            height: 285px;
             border: 1px solid #00adff;
-            .overview_head {
+            margin-top: 16px;
+            .user_title {
               width: 100%;
               height: 40px;
-              // display: flex;
               background-color: rgba(43, 255, 251, 0.2);
               line-height: 40px;
-              .overview_circle {
+              .user_circle {
                 width: 10px;
                 height: 10px;
                 margin-left: 8px;
+                margin-right: 6px;
                 border-radius: 50%;
                 background: gold;
-                margin-right: 6px;
                 float: left;
               }
               span {
                 color: #00adff;
-              }
-            }
-          }
-          .con_tradist {
-            width: 100%;
-            height: 180px;
-            // border: 1px solid #ccc;
-            margin-top: 12px;
-            display: flex;
-            color: #fff;
-            .imgbox {
-              width: 98%;
-              height: 137px;
-              background-color: rgba(24, 78, 136, 0.3);
-              text-align: center;
-              line-height: 137px;
-            }
-            .area_com {
-              width: 30%;
-              height: 100%;
-              .area_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(200, 119, 122, 0.7);
-              }
-            }
-            .index_com {
-              width: 30%;
-              height: 100%;
-              margin-left: 4%;
-              .index_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(48, 161, 186, 0.7);
-              }
-            }
-            .dime_com {
-              width: 30%;
-              height: 100%;
-              margin-left: 4%;
-              .dime_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(114, 127, 184, 0.7);
               }
             }
           }
         }
       }
-      .dashboard_right_bottom {
+      .effect_bottom {
         width: 100%;
-        height: 280px;
-        margin-top: 20px;
-        border: 1px solid #00adff;
-        border-radius: 0 0 25px 0;
-        .analysis_title {
-          width: 100%;
-          height: 36px;
-          background-color: rgba(10, 115, 249, 0.35);
-          line-height: 36px;
-          .analysis_circle {
-            float: left;
-            margin-left: 5px;
-            color: #2bfffb;
-            .data_circle {
-              width: 10px;
-              height: 10px;
-              margin-left: 8px;
-              border-radius: 50%;
-              background: gold;
-              margin-right: 6px;
-              float: left;
-            }
-            span {
-              margin-left: 4px;
-            }
-          }
-          .analysis_tab {
-            width: 80%;
-            height: 100%;
-            display: flex;
-            float: right;
-            margin-left: 6%;
-            margin-top: 5px;
-            // background: #fff;
-            .total_rank,
-            .right_matter,
-            .apply_matter,
-            .serve_matter,
-            .settle_depart,
-            .guide_ele {
-              cursor: pointer;
-              width: 100px;
-              height: 25px;
-              background-color: rgba(167, 167, 167, 0.1);
-              line-height: 25px !important;
-              margin-left: 5px;
-              color: #aaa;
-              font-size: 12px;
-              img {
-                width: 20%;
-                margin-top: 2px;
-              }
-            }
-          }
+        height: 320px;
+        display: flex;
+        margin-top: 16px;
+        .chart_left,
+        .chart_right {
+          width: 49%;
+          height: 100%;
+          border: 1px solid #00adff;
+          margin-left: 6px;
+        }
+        .chart_right {
+          margin-left: 15px;
+        }
+        .chart_left {
+          border-radius: 0 0 0 25px;
         }
       }
     }
