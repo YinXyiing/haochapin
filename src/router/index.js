@@ -40,6 +40,12 @@ const routes = [{
     name: 'Overrank',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/servemethod/servemethod.vue')
   },
+  // 在线服务成效度
+  {
+    path: '/serviceEffect',
+    name: 'ServiceEffect',
+    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/serveeffect/index.vue')
+  },
   // 404
   {
     path: '/404',
