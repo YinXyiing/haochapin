@@ -68,20 +68,18 @@
           </div>
         </div>
       </section>
-      <section class="dashboard_right">
-        <div class="dashboard_right_top">
-          <div class="map_board">
-            <div class="map_title">
-              <p class="map_circle"></p>
-              <span>市级政府服务平台集约化程度</span>
-            </div>
-            <div class="echarts">
-              <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
-            </div>
+      <section class="serve_mid">
+        <div class="map_board">
+          <div class="map_title">
+            <p class="map_circle"></p>
+            <span>服务能力分布</span>
+          </div>
+          <div class="echarts">
+            <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
           </div>
         </div>
-        <div class="dashboard_right_bottom"></div>
       </section>
+      <section class="serve_right"></section>
     </div>
   </div>
 </template>
@@ -121,9 +119,9 @@ export default {
   },
   mounted () {
     this.chinaConfigure()
-    const totaldata = echarts.init(this.$refs.total_matter_board)
-    const cityleveldata = echarts.init(this.$refs.city_level)
-    const arealeveldata = echarts.init(this.$refs.area_level)
+    // const totaldata = echarts.init(this.$refs.total_matter_board)
+    // const cityleveldata = echarts.init(this.$refs.city_level)
+    // const arealeveldata = echarts.init(this.$refs.area_level)
 
     var polyOption = {
       // title: {
@@ -268,9 +266,9 @@ export default {
         { type: 'bar' }
       ]
     }
-    cityleveldata.setOption(leveldataOption)
-    totaldata.setOption(polyOption)
-    arealeveldata.setOption(areadataOption)
+    // cityleveldata.setOption(leveldataOption)
+    // totaldata.setOption(polyOption)
+    // arealeveldata.setOption(areadataOption)
     // citydata.setOption(dataOption)
     // var that = this
     // this.myChart.on('click', function (params) {
@@ -376,31 +374,19 @@ export default {
 
 <style lang='scss' scoped>
 .dashboard {
-  // background: url("../../assets/dashboard/background.png") no-repeat;
-  // width: 100vw;
-  // height: 200vh;
-  // background-size: 100% 100%;
   .edition_heart {
-    width: 95%;
-    height: 95%;
-    padding: 4px 30px;
+    width: 100%;
+    height: 100%;
     .table_backgrA {
       background-color: rgba(43, 255, 251, 0.2);
     }
     .table_backgrB {
       background-color: rgba(43, 255, 251, 0);
     }
-    .demonstrateA {
-      display: block;
-    }
-    .demonstrateB {
-      display: none;
-    }
     .dashboard_left {
       width: 24%;
       height: 100%;
       float: left;
-      margin-top: 12px;
       margin-left: 30px;
       .rank_bord {
         width: 100%;
@@ -523,6 +509,7 @@ export default {
           }
         }
       }
+
       .indic_anay {
         width: 100%;
         height: 460px;
@@ -556,204 +543,38 @@ export default {
         }
       }
     }
-    .dashboard_right {
+    .serve_mid {
+      width: 49%;
+      height: 920px;
+      margin-left: 16px;
+      //   display: flex;
       float: left;
-      width: 70%;
-      height: 900px;
-      margin-left: 14px;
-      margin-top: 12px;
-      .dashboard_right_top {
+      .map_board {
         width: 100%;
         height: 620px;
-
-        .map_board {
-          width: 58%;
-          height: 100%;
-          float: left;
-          border: 1px solid #00adff;
-          .map_title {
-            width: 100%;
-            height: 40px;
-            background-color: rgba(43, 255, 251, 0.2);
-            line-height: 40px;
-            .map_circle {
-              width: 10px;
-              height: 10px;
-              margin-left: 8px;
-              border-radius: 50%;
-              background: gold;
-              float: left;
-            }
-            span {
-              color: #00adff;
-            }
-          }
-        }
-        .map_right {
-          width: 38%;
-          height: 100%;
-          float: right;
-          .overview_fir {
-            width: 100%;
-            height: 290px;
-            border: 1px solid #00adff;
-            border-radius: 0 25px 0 0;
-            .overview_head {
-              width: 100%;
-              height: 40px;
-              // display: flex;
-              background-color: rgba(43, 255, 251, 0.2);
-              border-radius: 0 25px 0 0;
-              line-height: 40px;
-              .overview_circle {
-                width: 10px;
-                height: 10px;
-                margin-left: 8px;
-                border-radius: 50%;
-                background: gold;
-                float: left;
-              }
-              span {
-                color: #00adff;
-              }
-            }
-          }
-          .overview_sec {
-            width: 100%;
-            height: 290px;
-            margin-top: 30px;
-            border: 1px solid #00adff;
-            .overview_head {
-              width: 100%;
-              height: 40px;
-              // display: flex;
-              background-color: rgba(43, 255, 251, 0.2);
-              line-height: 40px;
-              .overview_circle {
-                width: 10px;
-                height: 10px;
-                margin-left: 8px;
-                border-radius: 50%;
-                background: gold;
-                float: left;
-              }
-              span {
-                color: #00adff;
-              }
-            }
-          }
-          .con_tradist {
-            width: 100%;
-            height: 180px;
-            // border: 1px solid #ccc;
-            margin-top: 12px;
-            display: flex;
-            color: #fff;
-            .imgbox {
-              width: 98%;
-              height: 137px;
-              background-color: rgba(24, 78, 136, 0.3);
-              text-align: center;
-              line-height: 137px;
-            }
-            .area_com {
-              width: 30%;
-              height: 100%;
-              .area_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(200, 119, 122, 0.7);
-              }
-            }
-            .index_com {
-              width: 30%;
-              height: 100%;
-              margin-left: 4%;
-              .index_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(48, 161, 186, 0.7);
-              }
-            }
-            .dime_com {
-              width: 30%;
-              height: 100%;
-              margin-left: 4%;
-              .dime_title {
-                width: 98%;
-                height: 40px;
-                text-align: center;
-                line-height: 40px;
-                border-radius: 15px 15px 0 0;
-                background-color: rgba(114, 127, 184, 0.7);
-              }
-            }
-          }
-        }
-      }
-      .dashboard_right_bottom {
-        width: 100%;
-        height: 280px;
-        margin-top: 20px;
         border: 1px solid #00adff;
-        border-radius: 0 0 25px 0;
-        .analysis_title {
+        .map_title {
           width: 100%;
-          height: 36px;
-          background-color: rgba(10, 115, 249, 0.35);
-          line-height: 36px;
-          .analysis_circle {
+          height: 40px;
+          background-color: rgba(43, 255, 251, 0.2);
+          line-height: 40px;
+          .map_circle {
+            width: 10px;
+            height: 10px;
+            margin-left: 8px;
+            border-radius: 50%;
+            background: gold;
             float: left;
-            margin-left: 5px;
-            color: #2bfffb;
-            .data_circle {
-              width: 10px;
-              height: 10px;
-              margin-left: 8px;
-              border-radius: 50%;
-              background: gold;
-              float: left;
-            }
-            span {
-              margin-left: 4px;
-            }
           }
-          .analysis_tab {
-            width: 80%;
-            height: 100%;
-            display: flex;
-            float: right;
-            margin-left: 6%;
-            margin-top: 5px;
-            // background: #fff;
-            .total_rank,
-            .right_matter,
-            .apply_matter,
-            .serve_matter,
-            .settle_depart,
-            .guide_ele {
-              cursor: pointer;
-              width: 100px;
-              height: 25px;
-              background-color: rgba(167, 167, 167, 0.1);
-              line-height: 25px !important;
-              margin-left: 5px;
-              color: #aaa;
-              font-size: 12px;
-              img {
-                width: 20%;
-                margin-top: 2px;
-              }
-            }
+          span {
+            color: #00adff;
           }
         }
       }
+    }
+    .serve_right {
+      width: 24%;
+      height: 920px;
     }
   }
 }

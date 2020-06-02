@@ -17,22 +17,23 @@ const routes = [{
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue')
   },
   // 城市详情信息
-  {
-    path: '/citydetail/:cityname',
-    name: 'Citydetail',
-    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/citydetail.vue')
-  },
+  // {
+  //   path: '/citydetail/:cityname',
+  //   name: 'Citydetail',
+  //   component: () => import( /* webpackChunkName: "dashboard" */ '@/views/dashboard/citydetail.vue')
+  // },
   // 总体排名
-  {
-    path: '/overrank',
-    name: 'Overrank',
-    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/overrank/overrank.vue')
-  },
-  {
-    path: '/servemethod',
-    name: 'Overrank',
-    component: () => import( /* webpackChunkName: "dashboard" */ '@/views/servemethod/servemethod.vue')
-  },
+  // {
+  //   path: '/overrank',
+  //   name: 'Overrank',
+  //   component: () => import( /* webpackChunkName: "dashboard" */ '@/views/overrank/overrank.vue')
+  // },
+  // 服务方式
+  // {
+  //   path: '/servemethod',
+  //   name: 'Overrank',
+  //   component: () => import( /* webpackChunkName: "dashboard" */ '@/views/servemethod/servemethod.vue')
+  // },
   // 404
   {
     path: '/404',
