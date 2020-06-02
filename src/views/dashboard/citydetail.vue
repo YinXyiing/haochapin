@@ -358,9 +358,8 @@ export default ({
   margin-top: -28px;
 }
 .edit_hert {
-  height: 95%;
-  width: 95%;
-  padding: 2%;
+  height: 100%;
+  width: 100%;
   display: flex;
   .city_detail {
     width: 70%;
@@ -603,7 +602,7 @@ export default ({
     }
   }
   .city_score {
-    width: 25%;
+    width: 28%;
     height: 880px;
     margin-left: 1%;
     border: 1px solid rgb(0, 173, 255);

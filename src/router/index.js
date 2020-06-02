@@ -28,12 +28,13 @@ const routes = [{
     name: 'ServiSceCoverage',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/service-coverage/index.vue')
   },
-  // 总体排名
+  //总体排名 
   {
     path: '/overrank',
     name: 'Overrank',
     component: () => import( /* webpackChunkName: "dashboard" */ '@/views/overrank/overrank.vue')
   },
+  //服务方式 
   {
     path: '/servemethod',
     name: 'Overrank',

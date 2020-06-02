@@ -522,9 +522,9 @@ export default {
   // height: 200vh;
   // background-size: 100% 100%;
   .edition_heart {
-    width: 95%;
-    height: 95%;
-    padding: 4px 30px;
+    width: 100%;
+    height: 100%;
+
     .demonstrateA {
       display: block;
     }

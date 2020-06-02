@@ -15,8 +15,9 @@
 <style lang="stylus">
 .backboard {
   background: url('./assets/dashboard/background.png') no-repeat;
-  width: 100vw;
+  width: 90vw;
   height: 200vh;
   background-size: 100% 100%;
+  padding: 0 5vw;
 }
 </style>
