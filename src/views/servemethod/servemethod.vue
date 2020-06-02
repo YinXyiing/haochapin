@@ -78,15 +78,96 @@
             <div :style="{height:'580px',width:'100%'}" ref="myEchart"></div>
           </div>
         </div>
+        <div class="num_analysis">
+          <div class="analysis_title">
+            <p class="analysis_circle"></p>
+            <span>市本级部门进驻市级网上政务服务平台的数据分析</span>
+          </div>
+          <div class="analysis_content">
+            <div class="content_fir">
+              <img src="../../assets/dashboard/省级政务服务平台@1x.png" alt />
+              <p>市级政务服务平台</p>
+              <p>进一张网办所有事</p>
+            </div>
+            <div class="content_sec">
+              <div class="city_level">
+                <p class="city_box">地市级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>441</span>个地市政府
+                </p>
+              </div>
+              <div class="county_level">
+                <p class="county_box">区县级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>3278</span>县级政府
+                </p>
+              </div>
+              <div class="town_level">
+                <p class="town_box">乡镇级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个乡镇
+                </p>
+              </div>
+              <div class="village_level">
+                <p class="village_box">村居级</p>
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>24431</span>个村居
+                </p>
+              </div>
+            </div>
+            <div class="content_thr">
+              <div class="city_depart">
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个市直属
+                </p>
+              </div>
+              <div class="county_depart">
+                <p class="el-icon-caret-right"></p>
+                <p>
+                  <span>4431</span>个县直属
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="serve_right"></section>
+      <section class="serve_right">
+        <div class="annual_comp">
+          <div class="annual_title">
+            <p class="annual_circle"></p>
+            <span>市级政府网上政务能力年度对比</span>
+          </div>
+          <div class="annual_comp_chart" ref="annual_comp_chart"></div>
+        </div>
+        <div class="unified_entr">
+          <div class="unified_title">
+            <p class="unified_circle"></p>
+            <span>政务服务界面统一入口</span>
+          </div>
+          <div class="unified_chart_box">
+            <div ref="unified_chart_left" style="width:100%;height:100%;"></div>
+            <div ref="unified_chart_right" style="width:100%;height:100%;"></div>
+          </div>
+        </div>
+        <div class="serve_hall">
+          <div class="serve_title">
+            <p class="serve_circle"></p>
+            <span>市级政府实体政务服务大厅建设情况</span>
+          </div>
+          <div class="serve_hall_chart" ref="serve_hall_chart"></div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
 <script>
 import vDashBoardHeader from '@/components/DashBoardHeader'
 import echarts from 'echarts'
-// import '../../../node_modules/echarts/map/js/province/shanxi'
 import '../../assets/js/shanxi'
 export default {
   data () {
