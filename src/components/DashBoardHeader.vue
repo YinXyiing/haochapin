@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-28 16:28:08
- * @LastEditTime: 2020-06-01 14:34:34
+ * @LastEditTime: 2020-06-01 17:50:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \government-service-assessment\src\components\DashBoardHeader.vue
@@ -42,7 +42,7 @@
         </router-link>
       </div>
       <div class="divBorder">
-        <router-link to="/">
+        <router-link to="/serviceCoverage">
           <span>服务事项覆盖度</span>
         </router-link>
       </div>
@@ -111,6 +111,7 @@ export default {
     }
   }
   .nav_btn {
+    margin-bottom: 12px;
     width: 108px;
     height: 40px;
     text-align: center;
