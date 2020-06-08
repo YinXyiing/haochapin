@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-05-27 21:12:18
- * @LastEditTime: 2020-05-28 17:57:02
+ * @LastEditTime: 2020-06-03 15:20:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \government-service-assessment\src\views\dashboard\index.vue
@@ -440,9 +440,8 @@ export default {
     chinaConfigure () {
       var that = this
       this.myChart = echarts.init(this.$refs.myEchart)
-      window.onresize = this.myChart.resize
+      // window.onresize = this.myChart.resize
       this.myChart.setOption({ // 进行相关配置
-        // backgroundColor: '#02AFDB',
         tooltip: {
           trigger: 'item',
           confine: true,
@@ -452,18 +451,18 @@ export default {
             return txtCon
           }
         }, // 鼠标移到图里面的浮动提示框
-        dataRange: {
-          show: false,
-          min: 0,
-          max: 1000,
-          text: ['High', 'Low'],
-          realtime: true,
-          calculable: true
-          // color: ['orangered', 'yellow', 'lightskyblue']
-        },
+        // dataRange: {
+        //   show: false,
+        //   min: 0,
+        //   max: 1000,
+        //   text: ['High', 'Low'],
+        //   realtime: true,
+        //   calculable: true
+        //   // color: ['orangered', 'yellow', 'lightskyblue']
+        // },
         geo: { // 这个是重点配置区
           map: '山西', // 表示中国地图
-          roam: true,
+          roam: false,
           label: {
             normal: {
               show: true, // 是否显示对应地名
@@ -477,12 +476,12 @@ export default {
               borderColor: 'rgba(0, 0, 0, 0.2)'
             },
             emphasis: {
-              areaColor: null,
-              shadowOffsetX: 0,
-              shadowOffsetY: 0,
+              areaColor: 'red',
+              shadowOffsetX: 5,
+              shadowOffsetY: 5,
               shadowBlur: 20,
               borderWidth: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
+              shadowColor: 'blue'
             }
           }
         },
@@ -492,7 +491,7 @@ export default {
           itemStyle: {
             normal: {
               label: {
-                show: false,
+                show: true,
                 textStyle: {
                   color: 'red'
                 }
@@ -507,7 +506,7 @@ export default {
           geoIndex: 0,
           data: [{
             name: '太原',
-            value: 599
+            value: 5
           }]
         }
         ]

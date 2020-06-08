@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-01 10:22:23
- * @LastEditTime: 2020-06-02 17:45:52
+ * @LastEditTime: 2020-06-03 10:19:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \haochapin\src\views\service-coverage\index.vue
@@ -60,6 +60,23 @@ export default {
       legend: {
         bottom: 0
       },
+      toolbox: {
+
+
+        feature: {
+          saveAsImage: {
+            iconStyle: {
+              borderColor: 'yellow'
+            },
+            emphasis: {
+              iconStyle: {
+                borderColor: 'red'
+              }
+            }
+          }
+
+        }
+      },
       grid: {
         left: 40,   // 与容器左侧的距离
         // right: '5%', // 与容器右侧的距离
@@ -91,7 +108,7 @@ export default {
         show: false
       },
       textStyle: {
-        color: '#fff',
+        color: '#000',
         fontSize: 14
       },
       series: [{
