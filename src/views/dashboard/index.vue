@@ -437,85 +437,310 @@ export default {
       }
       this.selectIndex = index
     },
+    // chinaConfigure () {
+    //   var that = this
+    //   this.myChart = echarts.init(this.$refs.myEchart)
+    //   window.onresize = this.myChart.resize
+    //   this.myChart.setOption({ // 进行相关配置
+    //     // backgroundColor: '#02AFDB',
+    //     title: {
+    //       text: '山西',
+    //       top: 25,
+    //       // 值: 'left', 'center', 'right' 同上
+    //       left: 'center',
+    //       // 文本样式
+    //       textStyle: {
+    //         // 字体大小
+    //         fontSize: 25,
+    //         // 字体粗细
+    //         fontWeight: 650,
+    //         // 字体颜色
+    //         color: '#fff'
+    //       }
+    //     },
+    //     visualMap: {
+    //       // continuous 类型为连续型
+    //       type: 'continuous',
+    //       show: true, // 是否显示 visualMap-continuous 组件 如果设置为 false，不会显示，但是数据映射的功能还存在
+    //       // 指定 visualMapContinuous 组件的允许的最小/大值 min/max 必须用户指定
+    //       min: 0,
+    //       // min,max 形成了视觉映射的定义域
+    //       max: 400,
+    //       // 文本样式
+    //       textStyle: {
+    //         // 字体大小
+    //         fontSize: 15,
+    //         // 字体颜色
+    //         color: '#fff'
+    //       },
+    //       // 拖拽时，是否实时更新
+    //       realtime: false,
+    //       // 是否显示拖拽用的手柄
+    //       calculable: true,
+    //       // 定义在选中范围中的视觉元素
+    //       inRange: {
+    //         // 图元的颜色
+    //         color: ['#9fb5ea', '#e6ac53', '#74e2ca', '#85daef', '#9feaa5', '#5475f5']
+    //       }
+    //     },
+
+    //     tooltip: {
+    //       trigger: 'item',
+    //       confine: true,
+    //       formatter: (params, val) => {
+    //         console.log("params", params, "val", val)
+    //         var dataCon = params.name
+    //         var txtCon = dataCon + ':' + val.value
+    //         return txtCon
+    //       }
+    //     }, // 鼠标移到图里面的浮动提示框
+
+
+    //     dataRange: {
+    //       show: false,
+    //       min: 0,
+    //       max: 1000,
+    //       text: ['High', 'Low'],
+    //       realtime: true,
+    //       calculable: true
+    //       // color: ['orangered', 'yellow', 'lightskyblue']
+    //     },
+    //     geo: { // 这个是重点配置区
+    //       map: '山西', // 表示中国地图
+    //       roam: false,
+    //       label: {
+    //         normal: {
+    //           show: true, // 是否显示对应地名
+    //           textStyle: {
+    //             color: 'rgba(0,0,0)'
+    //           }
+    //         }
+    //       },
+    //       itemStyle: {
+    //         normal: {
+    //           borderColor: 'rgba(0, 0, 0, 0.2)'
+    //         },
+    //         emphasis: {
+    //           areaColor: null,
+    //           shadowOffsetX: 0,
+    //           shadowOffsetY: 0,
+    //           shadowBlur: 20,
+    //           borderWidth: 0,
+    //           shadowColor: 'rgba(0, 0, 0, 0.5)'
+    //         }
+    //       }
+    //     },
+    //     series: [{
+    //       type: 'map',
+    //       coordinateSystem: 'geo',
+    //       itemStyle: {
+    //         normal: {
+    //           label: {
+    //             show: false,
+    //             textStyle: {
+    //               color: 'red'
+    //             }
+    //           }
+    //         }
+    //       },
+
+
+    //     },
+    //     {
+    //       name: '选择省份', // 浮动框的标题
+    //       type: 'map',
+    //       value: '1',
+    //       geoIndex: 0,
+    //       data: [
+    //         { name: '太原市', value: 31.4 },
+    //         { name: '运城市', value: 38.4 },
+    //         { name: '大同市', value: 47.9 },
+    //         { name: '朔州市', value: 196.3 },
+    //         { name: '忻州市', value: 102 },
+    //         { name: '阳泉市', value: 30.8 },
+    //         { name: '吕梁市', value: 369.4 },
+    //         { name: '晋中市', value: 65.2 },
+    //         { name: '临汾市', value: 129.8 },
+    //         { name: '长治市', value: 90.5 },
+    //         { name: '晋城市', value: 395.5 },
+
+    //       ]
+    //     }
+    //     ]
+    //   })
+    // }
+
+
+
     chinaConfigure () {
-      var that = this
       this.myChart = echarts.init(this.$refs.myEchart)
       window.onresize = this.myChart.resize
       this.myChart.setOption({ // 进行相关配置
-        // backgroundColor: '#02AFDB',
+        // 基于准备好的dom，初始化echarts实例
+        // let mychart = this.echarts.init(document.getElementById('myEchart'))
+        // // 监听屏幕变化自动缩放图表
+        // window.addEventListener('resize', function () {
+        //   mychart.resize()
+        // })
+        // 绘制图表
+        // mychart.setOption({
+        // 图表主标题
+        // title: {
+        //   // 文本
+        //   text: '',
+        //   // 值: 'top', 'middle', 'bottom' 也可以是具体的值或者百分比
+        //   top: 25,
+        //   // 值: 'left', 'center', 'right' 同上
+        //   left: 'center',
+        //   // 文本样式
+        //   textStyle: {
+        //     // 字体大小
+        //     fontSize: 25,
+        //     // 字体粗细
+        //     fontWeight: 650,
+        //     // 字体颜色
+        //     color: '#fff'
+        //   }
+        // },
+        // 提示框组件
         tooltip: {
+          // 触发类型, 数据项图形触发
           trigger: 'item',
-          confine: true,
-          formatter: (params) => {
-            var dataCon = params.name
-            var txtCon = dataCon + ':' + '这个城市挺美啊'
-            return txtCon
+          // 使用函数模板，传入的数据值 ——> value: number | Array
+          formatter: function (val) {
+            return val.data.name + + val.data.value
           }
-        }, // 鼠标移到图里面的浮动提示框
-        dataRange: {
-          show: false,
+        },
+        // 视觉映射组件
+        visualMap: {
+          // continuous 类型为连续型
+          type: 'continuous',
+          show: true, // 是否显示 visualMap-continuous 组件 如果设置为 false，不会显示，但是数据映射的功能还存在
+          // 指定 visualMapContinuous 组件的允许的最小/大值 min/max 必须用户指定
           min: 0,
-          max: 1000,
-          text: ['High', 'Low'],
-          realtime: true,
-          calculable: true
-          // color: ['orangered', 'yellow', 'lightskyblue']
-        },
-        geo: { // 这个是重点配置区
-          map: '山西', // 表示中国地图
-          roam: true,
-          label: {
-            normal: {
-              show: true, // 是否显示对应地名
-              textStyle: {
-                color: 'rgba(0,0,0)'
-              }
-            }
+          // min,max 形成了视觉映射的定义域
+          max: 300,
+          // 文本样式
+          textStyle: {
+            // 字体大小
+            top: 0,
+            fontSize: 15,
+            // 字体颜色
+            color: '#fff'
           },
-          itemStyle: {
-            normal: {
-              borderColor: 'rgba(0, 0, 0, 0.2)'
+          // 拖拽时，是否实时更新
+          realtime: false,
+          // 是否显示拖拽用的手柄
+          calculable: true,
+          // 定义在选中范围中的视觉元素
+          inRange: {
+            // 图元的颜色
+            color: ['#FFB6C1', '#DB7093', '#C71585', '#FF00FF', '#BA55D3', '#9932CC']
+          }
+        },
+        series: [
+          {
+            // 类型
+            type: 'map',
+            // 系列名称，用于tooltip的显示，legend 的图例筛选 在 setOption 更新数据和配置项时用于指定对应的系列
+            map: '山西',
+            // 地图类型
+            mapType: 'province',
+            // 是否开启鼠标缩放和平移漫游 默认不开启 
+            // 如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move' 设置成 true 为都开启
+            roam: false,
+            // 定位 值: 'top', 'middle', 'bottom' 也可以是具体的值或者百分比
+            top: 70,
+            // 图形上的文本标签
+            label: {
+              show: false // 是否显示对应地名
             },
+            // 地图区域的多边形 图形样式
+            itemStyle: {
+              // 地图区域的颜色 如果设置了visualMap, 这个属性将不起作用
+              areaColor: '#7B68EE',
+              // 描边线宽 为 0 时无描边
+              borderWidth: 0.5,
+              // 图形的描边颜色 支持的颜色格式同 color
+              borderColor: '#000',
+              // 描边类型，默认为实线，支持 'solid', 'dashed', 'dotted'
+              borderType: 'solid'
+            },
+            // 高亮状态
             emphasis: {
-              areaColor: null,
-              shadowOffsetX: 0,
-              shadowOffsetY: 0,
-              shadowBlur: 20,
-              borderWidth: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        },
-        series: [{
-          type: 'scatter',
-          coordinateSystem: 'geo',
-          itemStyle: {
-            normal: {
+              // 文本标签
               label: {
-                show: false,
-                textStyle: {
-                  color: 'red'
-                }
+                // 是否显示标签
+                show: true,
+                // 文字的颜色 如果设置为 'auto'，则为视觉映射得到的颜色，如系列色
+                color: '#fff'
+              },
+              // 图形样式
+              itemStyle: {
+                // 地图区域的颜色
+                areaColor: '#FF6347'
               }
-            }
+            },
+            // 地图系列中的数据内容数组，数组项可以为单个数值
+            data: [
+              { name: '太原市', value: 31.4 },
+              { name: '运城市', value: 38.4 },
+              { name: '大同市', value: 47.9 },
+              { name: '朔州市', value: 196.3 },
+              { name: '忻州市', value: 102 },
+              { name: '阳泉市', value: 30.8 },
+              { name: '吕梁市', value: 269.4 },
+              { name: '晋中市', value: 65.2 },
+              { name: '临汾市', value: 129.8 },
+              { name: '长治市', value: 90.5 },
+              { name: '晋城市', value: 295.5 },
+            ]
           }
-        },
-        {
-          name: '选择省份', // 浮动框的标题
-          type: 'map',
-          value: '1',
-          geoIndex: 0,
-          data: [{
-            name: '太原',
-            value: 599
-          }]
-        }
         ]
       })
+      // 定时显示提示框和高亮效果
+      let index = -1
+      setInterval(function () {
+        // 隐藏提示框
+        mychart.dispatchAction({
+          type: 'hideTip',
+          seriesIndex: 0,
+          dataIndex: index
+        })
+        // 显示提示框
+        mychart.dispatchAction({
+          type: 'showTip',
+          seriesIndex: 0,
+          dataIndex: index + 1
+        })
+        // 取消高亮指定的数据图形
+        mychart.dispatchAction({
+          type: 'downplay',
+          seriesIndex: 0,
+          dataIndex: index
+        })
+        // 高亮指定的数据图形
+        mychart.dispatchAction({
+          type: 'highlight',
+          seriesIndex: 0,
+          dataIndex: index + 1
+        })
+        index++
+        if (index > cityArr.length - 1) {
+          index = -1
+        }
+      }, 2000)
     }
-
   }
 }
+
+
+
+
+
+
+
+
 </script>
 
 <style lang='scss' scoped>
