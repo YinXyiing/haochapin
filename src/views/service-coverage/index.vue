@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-01 10:22:23
- * @LastEditTime: 2020-06-03 10:19:47
+ * @LastEditTime: 2020-06-09 15:53:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \haochapin\src\views\service-coverage\index.vue
@@ -28,7 +28,7 @@
                 <span>行政权力事项</span>
               </li>
               <li>
-                <span>行政权力事项</span>
+                <span>行政权力事项123</span>
               </li>
             </ul>
             <div class="publishCount" ref="publishCount"></div>
