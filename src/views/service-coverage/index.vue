@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-06-01 10:22:23
- * @LastEditTime: 2020-06-02 17:45:52
+ * @LastEditTime: 2020-06-09 15:53:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \haochapin\src\views\service-coverage\index.vue
@@ -28,7 +28,7 @@
                 <span>行政权力事项</span>
               </li>
               <li>
-                <span>行政权力事项</span>
+                <span>行政权力事项123</span>
               </li>
             </ul>
             <div class="publishCount" ref="publishCount"></div>
@@ -59,6 +59,23 @@ export default {
       height: 460,
       legend: {
         bottom: 0
+      },
+      toolbox: {
+
+
+        feature: {
+          saveAsImage: {
+            iconStyle: {
+              borderColor: 'yellow'
+            },
+            emphasis: {
+              iconStyle: {
+                borderColor: 'red'
+              }
+            }
+          }
+
+        }
       },
       grid: {
         left: 40,   // 与容器左侧的距离
@@ -91,7 +108,7 @@ export default {
         show: false
       },
       textStyle: {
-        color: '#fff',
+        color: '#000',
         fontSize: 14
       },
       series: [{

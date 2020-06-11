@@ -358,7 +358,7 @@ export default {
         },
         geo: { // 这个是重点配置区
           map: '山西', // 表示中国地图
-          roam: true,
+          roam: false,
           label: {
             normal: {
               show: true, // 是否显示对应地名

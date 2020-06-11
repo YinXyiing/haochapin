@@ -454,7 +454,6 @@ export default {
       }
       this.selectIndex = index
     },
-
     chinaConfigure () {
       this.myChart = echarts.init(this.$refs.myEchart)
       window.onresize = this.myChart.resize
