@@ -210,11 +210,14 @@ import vDashBoardHeader from '@/components/DashBoardHeader'
 import echarts from 'echarts'
 // import '../../../node_modules/echarts/map/js/province/shanxi'
 import '../../assets/js/shanxi'
+import { getAllAndroidPlugins } from '@/api/requestHome'
+import { post } from '@/util/http'
 export default {
   data () {
     return {
       chart: null,
       selectIndex: 0,
+      mychart: '',
       dataList: [
         { id: '1', text: '学习', score: '100' },
         { id: '2', text: '学习', score: '100' },
@@ -233,6 +236,7 @@ export default {
   components: {
     vDashBoardHeader
   },
+
   mounted () {
     this.chinaConfigure()
     const indicdata = echarts.init(this.$refs.indic_harts)
@@ -426,9 +430,22 @@ export default {
     this.chart.dispose()
     this.chart = null
   },
+  created () {
+    // getAllAndroidPlugins()
+    //   .then(res => {
+    //     console.log(res);
+    //   })
+    post("logList").then(res => {
+      console.log("--------->", res)
+    })
+  },
   methods: {
     tomore () {
       this.$router.push("/overrank")
+      getAllAndroidPlugins()
+        .then(res => {
+          console.log(res);
+        })
     },
     setSelect (index) {
       console.log('--------index----->', index)
@@ -437,140 +454,6 @@ export default {
       }
       this.selectIndex = index
     },
-    // chinaConfigure () {
-    //   var that = this
-    //   this.myChart = echarts.init(this.$refs.myEchart)
-    //   window.onresize = this.myChart.resize
-    //   this.myChart.setOption({ // 进行相关配置
-    //     // backgroundColor: '#02AFDB',
-    //     title: {
-    //       text: '山西',
-    //       top: 25,
-    //       // 值: 'left', 'center', 'right' 同上
-    //       left: 'center',
-    //       // 文本样式
-    //       textStyle: {
-    //         // 字体大小
-    //         fontSize: 25,
-    //         // 字体粗细
-    //         fontWeight: 650,
-    //         // 字体颜色
-    //         color: '#fff'
-    //       }
-    //     },
-    //     visualMap: {
-    //       // continuous 类型为连续型
-    //       type: 'continuous',
-    //       show: true, // 是否显示 visualMap-continuous 组件 如果设置为 false，不会显示，但是数据映射的功能还存在
-    //       // 指定 visualMapContinuous 组件的允许的最小/大值 min/max 必须用户指定
-    //       min: 0,
-    //       // min,max 形成了视觉映射的定义域
-    //       max: 400,
-    //       // 文本样式
-    //       textStyle: {
-    //         // 字体大小
-    //         fontSize: 15,
-    //         // 字体颜色
-    //         color: '#fff'
-    //       },
-    //       // 拖拽时，是否实时更新
-    //       realtime: false,
-    //       // 是否显示拖拽用的手柄
-    //       calculable: true,
-    //       // 定义在选中范围中的视觉元素
-    //       inRange: {
-    //         // 图元的颜色
-    //         color: ['#9fb5ea', '#e6ac53', '#74e2ca', '#85daef', '#9feaa5', '#5475f5']
-    //       }
-    //     },
-
-    //     tooltip: {
-    //       trigger: 'item',
-    //       confine: true,
-    //       formatter: (params, val) => {
-    //         console.log("params", params, "val", val)
-    //         var dataCon = params.name
-    //         var txtCon = dataCon + ':' + val.value
-    //         return txtCon
-    //       }
-    //     }, // 鼠标移到图里面的浮动提示框
-
-
-    //     dataRange: {
-    //       show: false,
-    //       min: 0,
-    //       max: 1000,
-    //       text: ['High', 'Low'],
-    //       realtime: true,
-    //       calculable: true
-    //       // color: ['orangered', 'yellow', 'lightskyblue']
-    //     },
-    //     geo: { // 这个是重点配置区
-    //       map: '山西', // 表示中国地图
-    //       roam: false,
-    //       label: {
-    //         normal: {
-    //           show: true, // 是否显示对应地名
-    //           textStyle: {
-    //             color: 'rgba(0,0,0)'
-    //           }
-    //         }
-    //       },
-    //       itemStyle: {
-    //         normal: {
-    //           borderColor: 'rgba(0, 0, 0, 0.2)'
-    //         },
-    //         emphasis: {
-    //           areaColor: null,
-    //           shadowOffsetX: 0,
-    //           shadowOffsetY: 0,
-    //           shadowBlur: 20,
-    //           borderWidth: 0,
-    //           shadowColor: 'rgba(0, 0, 0, 0.5)'
-    //         }
-    //       }
-    //     },
-    //     series: [{
-    //       type: 'map',
-    //       coordinateSystem: 'geo',
-    //       itemStyle: {
-    //         normal: {
-    //           label: {
-    //             show: false,
-    //             textStyle: {
-    //               color: 'red'
-    //             }
-    //           }
-    //         }
-    //       },
-
-
-    //     },
-    //     {
-    //       name: '选择省份', // 浮动框的标题
-    //       type: 'map',
-    //       value: '1',
-    //       geoIndex: 0,
-    //       data: [
-    //         { name: '太原市', value: 31.4 },
-    //         { name: '运城市', value: 38.4 },
-    //         { name: '大同市', value: 47.9 },
-    //         { name: '朔州市', value: 196.3 },
-    //         { name: '忻州市', value: 102 },
-    //         { name: '阳泉市', value: 30.8 },
-    //         { name: '吕梁市', value: 369.4 },
-    //         { name: '晋中市', value: 65.2 },
-    //         { name: '临汾市', value: 129.8 },
-    //         { name: '长治市', value: 90.5 },
-    //         { name: '晋城市', value: 395.5 },
-
-    //       ]
-    //     }
-    //     ]
-    //   })
-    // }
-
-
 
     chinaConfigure () {
       this.myChart = echarts.init(this.$refs.myEchart)
@@ -700,36 +583,36 @@ export default {
       })
       // 定时显示提示框和高亮效果
       let index = -1
-      setInterval(function () {
-        // 隐藏提示框
-        mychart.dispatchAction({
-          type: 'hideTip',
-          seriesIndex: 0,
-          dataIndex: index
-        })
-        // 显示提示框
-        mychart.dispatchAction({
-          type: 'showTip',
-          seriesIndex: 0,
-          dataIndex: index + 1
-        })
-        // 取消高亮指定的数据图形
-        mychart.dispatchAction({
-          type: 'downplay',
-          seriesIndex: 0,
-          dataIndex: index
-        })
-        // 高亮指定的数据图形
-        mychart.dispatchAction({
-          type: 'highlight',
-          seriesIndex: 0,
-          dataIndex: index + 1
-        })
-        index++
-        if (index > cityArr.length - 1) {
-          index = -1
-        }
-      }, 2000)
+      // setInterval(function () {
+      //   // 隐藏提示框
+      //   mychart.dispatchAction({
+      //     type: 'hideTip',
+      //     seriesIndex: 0,
+      //     dataIndex: index
+      //   })
+      //   // 显示提示框
+      //   mychart.dispatchAction({
+      //     type: 'showTip',
+      //     seriesIndex: 0,
+      //     dataIndex: index + 1
+      //   })
+      //   // 取消高亮指定的数据图形
+      //   mychart.dispatchAction({
+      //     type: 'downplay',
+      //     seriesIndex: 0,
+      //     dataIndex: index
+      //   })
+      //   // 高亮指定的数据图形
+      //   mychart.dispatchAction({
+      //     type: 'highlight',
+      //     seriesIndex: 0,
+      //     dataIndex: index + 1
+      //   })
+      //   index++
+      //   if (index > cityArr.length - 1) {
+      //     index = -1
+      //   }
+      // }, 2000)
     }
   }
 }
